@@ -27,6 +27,5 @@
 	<a href={`mailto: ${email}`}>
 		<FlyWords option={{text: email}}/>
 	</a>
-	
 </div>
 
