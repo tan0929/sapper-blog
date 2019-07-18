@@ -36,7 +36,7 @@
     }
 
     .card:hover .bg{
-        opacity: 0.8;
+        opacity: 1;
         filter: none;
     }
     
