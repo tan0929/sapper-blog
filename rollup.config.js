@@ -69,7 +69,8 @@ export default {
 			}),
 			svelte({
 				generate: 'ssr',
-				dev
+				dev,
+				extensions: ['.svelte', '.svexy', '.md'],
 			}),
 			resolve({
 				dedupe

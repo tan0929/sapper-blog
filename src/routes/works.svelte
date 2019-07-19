@@ -36,8 +36,11 @@
     }
 </style>
 
-<h1>Works <Typewriter backward>in progress</Typewriter></h1>
+<svelte:head>
+	<title>Works</title>
+</svelte:head>
 
+<h1>Works <Typewriter backward>in progress</Typewriter></h1>
 
 <div class="wrapper">
     {#each works as work, index}

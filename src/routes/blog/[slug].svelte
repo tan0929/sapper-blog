@@ -2,9 +2,8 @@
 	export async function preload({ params, query }) {
 		// the `slug` parameter is available because
 		// this file is called [slug].svelte
-		const res = await this.fetch(`blog/${params.slug}.json`);
+		const res = await this.fetch(`blog/api/${params.slug}.json`);
 		const data = await res.json();
-
 		if (res.status === 200) {
 			return { post: data };
 		} else {
@@ -14,6 +13,9 @@
 </script>
 
 <script>
+	// if change this, remember to change the background and normal color below
+	import 'highlight.js/styles/gruvbox-dark.css';
+	
 	export let post;
 </script>
 
@@ -32,15 +34,19 @@
 	}
 
 	.content :global(pre) {
-		background-color: #f9f9f9;
+		/* highlight background color */
+		background-color: #282828;
 		box-shadow: inset 1px 1px 5px rgba(0,0,0,0.05);
 		padding: 0.5em;
 		border-radius: 2px;
 		overflow-x: auto;
 	}
 
+	
 	.content :global(pre) :global(code) {
 		background-color: transparent;
+		/* highlight normal text color */
+		color: antiquewhite;
 		padding: 0;
 	}
 
@@ -51,13 +57,14 @@
 	.content :global(li) {
 		margin: 0 0 0.5em 0;
 	}
+
 </style>
 
 <svelte:head>
-	<title>{post.title}</title>
+	<title>{post.frontmatter.title}</title>
 </svelte:head>
 
-<h1>{post.title}</h1>
+<h1>{post.frontmatter.title}</h1>
 
 <div class='content'>
 	{@html post.html}
