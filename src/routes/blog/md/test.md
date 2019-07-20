@@ -5,7 +5,9 @@ date: 2019-07-18
 auther: James Tan
 ---
 
-# test title
+![](logo-192.png)
+
+# test h1
 
 test content
 

@@ -12,9 +12,7 @@ const posts = fs.readdirSync('src/routes/blog/md').map(file => {
 
 		const { content, frontmatter } = process_md(markdown);
 
-		const date = new Date(`${frontmatter.date} EDT`); // cheeky hack
-		frontmatter.dateString = date.toDateString();
-
+		frontmatter.dateString = new Date(`${frontmatter.date} PST`).toDateString();
 
 		marked.setOptions({
 			renderer: new marked.Renderer(),
