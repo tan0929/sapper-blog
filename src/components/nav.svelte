@@ -89,6 +89,5 @@
 		     when hover over the link or tap it on a touchscreen -->
 		<li><a rel=prefetch class='{segment === "works" ? "selected" : "unselected"}' href='works'>works</a></li>
 		<li><a rel=prefetch class='{segment === "blog" ? "selected" : "unselected"}' href='blog'>blog</a></li>
-		
 	</ul>
 </nav>
