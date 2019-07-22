@@ -4,7 +4,7 @@
 
     export let option;
 
-    let show = false;
+    let enable = false;
     const delay = 0;
     const duration = 2000;
     const range = 300;
@@ -13,11 +13,11 @@
     const large = option.large === true;
 
     const size = "1.4em";
-    const mobileLarge = "2em";
-    const tabletLarge = "3em";
+    const mobileLarge = "1.4em";
+    const tabletLarge = "2.5em";
 
     onMount(()=>{
-        show=true;
+        enable=true;
     });
 
     function random(){
@@ -54,28 +54,28 @@
 	}
 </style>
 
-{#if show}
+{#if enable}
     <div class="wrapper">
         {#each words as word, index}
-                <div class="word">
-                    {#each word as character}
-                        <div 
-                            class="character"
-                            style={`
-                                --mobileSize: ${large ? mobileLarge : size};
-                                --tabletSize: ${large ? tabletLarge : size};
-                            `}
-                            in:fly="{{
-                                delay: delay,
-                                duration: duration,
-                                x: random(), 
-                                y: random(),
-                            }}"
-                        >
-                            {character}
-                        </div>
-                    {/each}
-                </div>
+            <div class="word">
+                {#each word as character}
+                    <div 
+                        class="character"
+                        style={`
+                            --mobileSize: ${large ? mobileLarge : size};
+                            --tabletSize: ${large ? tabletLarge : size};
+                        `}
+                        in:fly="{{
+                            delay: delay,
+                            duration: duration,
+                            x: random(), 
+                            y: random(),
+                        }}"
+                    >
+                        {character}
+                    </div>
+                {/each}
+            </div>
         {/each}
     </div>
 {/if}

@@ -1,8 +1,11 @@
 <script>
 	import FlyWords from '../components/flyWords.svelte';
+	import SEO from '../components/seo.svelte';
 
+	let text = `let me = works.map(({fun})=>fun)`;
+	let name = "James Tan";
 	let email = "contact@jamestan.me";
-	let text = "Hello, This is James Tan's blog";
+	
 
 </script>
 
@@ -18,12 +21,11 @@
 	}
 </style>
 
-<svelte:head>
-	<title>James Tan</title>
-</svelte:head>
+<SEO data={{}}/>
 
 <div class="wrapper">
 	<FlyWords option={{text, large: true}}/>
+	<FlyWords option={{text: name, large: true}}/>
 	<a href={`mailto: ${email}`}>
 		<FlyWords option={{text: email}}/>
 	</a>

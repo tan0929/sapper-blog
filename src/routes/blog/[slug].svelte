@@ -15,7 +15,7 @@
 <script>
 	// if change this, remember to change the background and normal color below
 	import 'highlight.js/styles/gruvbox-dark.css';
-	
+	import SEO from '../../components/seo.svelte';
 	export let post;
 </script>
 
@@ -28,6 +28,13 @@
 		so we have to use the :global(...) modifier to target
 		all elements inside .content
 	*/
+
+	.content :global(img) {
+		display: block;
+		/* margin: auto;  */
+		max-width: 100%;
+	}
+
 	.content :global(h2) {
 		font-size: 1.4em;
 		font-weight: 500;
@@ -58,13 +65,20 @@
 		margin: 0 0 0.5em 0;
 	}
 
+	#date {
+		text-align: right;
+	}
+
 </style>
 
-<svelte:head>
-	<title>{post.frontmatter.title}</title>
-</svelte:head>
+<SEO data={{
+		title: post.frontmatter.title,
+		description: post.frontmatter.description,
+	}} 
+/>
 
 <h1>{post.frontmatter.title}</h1>
+<p id="date">{post.frontmatter.dateString}</p>
 
 <div class='content'>
 	{@html post.html}

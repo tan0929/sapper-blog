@@ -2,12 +2,12 @@
     import { onMount } from 'svelte';
     export let backward;
 
-    let visible = false;
+    let enable = false;
     let cursor = true;
     let timeout;
 
     onMount(()=>{
-        visible = true;
+        enable = true;
     });
 
     function handleEnd(){
@@ -16,7 +16,7 @@
         }, 1000);
     }
 
-	function typewriter(node, { speed = 150 }) {
+	function typewriter(node, { speed = 200 }) {
 		const valid = (
 			node.childNodes.length === 1 &&
 			node.childNodes[0].nodeType === 3
@@ -26,7 +26,7 @@
 			throw new Error(`This transition only works on elements with a single text node child`);
 		}
 
-        const delay = 1000;
+        const delay = 1500;
 		const text = node.textContent;
 		const duration = text.length * speed;
 
@@ -52,7 +52,7 @@
     }
 </style>
 
-{#if visible}
+{#if enable}
 	<span 
         in:typewriter
         on:introend="{handleEnd}"

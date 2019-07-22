@@ -40,7 +40,6 @@
         filter: none;
     }
     
-    /* TODO fix this */
     .bg {
         z-index: 1;
         position: absolute;

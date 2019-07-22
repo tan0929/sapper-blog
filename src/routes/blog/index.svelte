@@ -10,6 +10,7 @@
 </script>
 
 <script>
+	import SEO from '../../components/seo.svelte';
 	export let posts;
 </script>
 
@@ -52,9 +53,7 @@
 
 </style>
 
-<svelte:head>
-	<title>Blog</title>
-</svelte:head>
+<SEO data={{title: "Blog"}}/>
 
 <h1>Recent posts</h1>
 
