@@ -26,7 +26,7 @@
 </p>
 <p>
 	Check the source code on Github
-	<a class="icon" href="/" target="_blank">
+	<a class="icon" href="https://github.com/tan0929/sapper-blog" target="_blank">
 		<Icon icon={faGithub}/>
 	</a>
 </p>
