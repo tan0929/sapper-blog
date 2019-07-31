@@ -28,97 +28,97 @@ There's already plenty of material in English on the internet, let's add some Ch
 
 首先，你需要搞一個context文件出來，因爲要在不同的檔案中導入他
 ```javascript
-    import { createContext } from 'react'
-    const MyContext = createContext()
-    export default MyContext
+import { createContext } from 'react'
+const MyContext = createContext()
+export default MyContext
 ```
 
 然後在你有可能會需要用到這個context的最頂層組件中，佈置好Provider，塞入初始值
 ```javascript
-    import React, { useState } from 'react'
-    import MyContext from './myContext'
-    import SomeComponent from './someComponent'
+import React, { useState } from 'react'
+import MyContext from './myContext'
+import SomeComponent from './someComponent'
 
-    const Root = ()=>{
-        const [number, setNumber] = useState(11)
-        return(
-            <MyContext.Provider value={{number, setNumber}}>
-                <SomeComponent />
-            </MyContext.Provider>
-        )
-    }
+const Root = ()=>{
+    const [number, setNumber] = useState(11)
+    return(
+        <MyContext.Provider value={{number, setNumber}}>
+            <SomeComponent />
+        </MyContext.Provider>
+    )
+}
 
-    export default Root
+export default Root
 ```
 
 等到要用的時候，召喚出Consumer，然後把東西扣出來用
 ```javascript
-    import React from 'react'
+import React from 'react'
 
-    const SomeComponent = ()=>(
-        <MyContext.Consumer>
-            {({number})=> (
-                <div>
-                    {number}
-                </div>
-            )}
-        </MyContext.Consumer>
-    )
+const SomeComponent = ()=>(
+    <MyContext.Consumer>
+        {({number})=> (
+            <div>
+                {number}
+            </div>
+        )}
+    </MyContext.Consumer>
+)
 
-    export default SomeComponent
+export default SomeComponent
 ```
 
 再試著封裝一個遞減的按鈕，要塞進剛才的Provider裡才能用
 ```javascript
-    import React from 'react'
+import React from 'react'
 
-    function decrement(number, setNumber){
-        setNumber(number-1)
-    }
+function decrement(number, setNumber){
+    setNumber(number-1)
+}
 
-    const DecrementButton = ()=>(
-        <MyContext.Consumer>
-            {({number, setNumber})=> (
-                // 如果把函數挪到Consumer外面就抓不到number了，得傳出去
-                <button onClick={e=>decrement(number,setNumber)}>
-                    -
-                </button>
-            )}
-        </MyContext.Consumer>
-    )
+const DecrementButton = ()=>(
+    <MyContext.Consumer>
+        {({number, setNumber})=> (
+            // 如果把函數挪到Consumer外面就抓不到number了，得傳出去
+            <button onClick={e=>decrement(number,setNumber)}>
+                -
+            </button>
+        )}
+    </MyContext.Consumer>
+)
 
-    export default DecrementButton
+export default DecrementButton
 ```
 
 但context api真的就讓你得到救贖了嗎？確實，和Redux比起來，已經很舒心了，起碼不用從action到reducer到store走一圈。甚至如果複用次數多的話，你還可以專門寫一個HOC來避免一直重複召喚Consumer。到這邊我們都還沒有考慮到如果一個組件中需要兩個不同的context中的數據的情形。現在我們來看看Svelte怎么寫。
 
 先做一個store文件出來，初始化一下。
 ```javascript
-    import { writable } from 'svelte/store'
-    export const number = writable(11)
+import { writable } from 'svelte/store'
+export const number = writable(11)
 ```
 
 然後，直接導入在任何地方拿來用
 ```html
-    <script>
-        import { number } from './store'
-    </script>
+<script>
+    import { number } from './store'
+</script>
 
-    <div>{$number}</div>
+<div>{$number}</div>
 ```
 
 和前面一樣，試著封裝一個遞減的按鈕
 ```html
-    <script>
-        import { number } from './stores';
-        function decrement() {
-            number.update(n => n - 1);
-        }
-    </script>
+<script>
+import { number } from './stores';
+function decrement() {
+    number.update(n => n - 1);
+}
+</script>
 
-    <button on:click={decrement}>
-        -
-    </button>
+<button on:click={decrement}>
+    -
+</button>
 ```
 
 要起飛了嗎？不管你飛不飛，反正我先飛了。
@@ -134,24 +134,24 @@ There's already plenty of material in English on the internet, let's add some Ch
 
 那Svelte如何在數據變化的時候自動更新視圖呢？
 ```html
-    <script>
-        let number = 511;
-        
-        $: double = number * 2;
-        $: triple = timesThree(number);
-        $: sextuple = timesThree(double); 
+<script>
+    let number = 511;
+    
+    $: double = number * 2;
+    $: triple = timesThree(number);
+    $: sextuple = timesThree(double); 
 
-        function timesThree(num){
-            return num * 3
-        }
-    </script>
+    function timesThree(num){
+        return num * 3
+    }
+</script>
 
-    <!-- 每當input的值變化，number就會更新，
-         其他依賴number的數值也會更新 -->
-    <input bind:value={number}>
-    <div>{number} doubled is {double}</div>
-    <div>{number} tripled is {triple}</div>
-    <div>{number} sextupled is {sextuple}</div>
+<!-- 每當input的值變化，number就會更新，
+        其他依賴number的數值也會更新 -->
+<input bind:value={number}>
+<div>{number} doubled is {double}</div>
+<div>{number} tripled is {triple}</div>
+<div>{number} sextupled is {sextuple}</div>
 ```
 
 有沒有初戀的感覺？
@@ -160,4 +160,51 @@ There's already plenty of material in English on the internet, let's add some Ch
 <br>
 
 
+# 樣式表
 
+和其他框架一樣，你同樣可以使用像Bootstrap之類的工具在Svelte組件中建構樣式，事實上我個人覺得Tailwind CSS也是很適合的選擇。但是他内建的style標簽也值得一提，你可以在組件中的頂層直接加上style標簽，然後在標簽内寫CSS。而且這些樣式是僅限于該組件的，也就是說並不用擔心污染全局，不用擔心污染子組件。你可以放心大膽的對div或者p做害羞的事。
+
+```html
+<script>
+    let lightsOut;
+    $: bgColor = lightsOut ? "#555" : "white";
+</script>
+
+<style>
+    div {
+        background-color: var(--bgColor);
+        transition: 3s;
+    }
+</style>
+
+<div style={`--bgColor: ${bgColor}`}>我只想自己靜靜的一個人呆著</div>
+<button on:click={ e=>lightsOut=true }>關燈</button>
+```
+
+<br>
+<br>
+
+---
+
+我的目的是分享，希望用最短的内容引起你最大的興趣。所以只提了部分特點，其他還有許多實用并且高效的功能沒有介紹。
+如果你能看到這邊，我覺得你應該會想去看看官方的互動教學以及文檔。
+
+<div>
+    <a href="https://svelte.dev/tutorial/basics" target="_blank">
+        互動式教學
+    </a>
+</div>
+
+<div>
+    <a href="https://svelte.dev/docs" target="_blank">
+        文檔
+    </a>
+</div>
+
+
+<br>
+<br>
+
+<p align="right">
+    by James T.
+</p>

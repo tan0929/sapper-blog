@@ -22,7 +22,7 @@ const posts = fs.readdirSync('src/md').map(file => {
 			pedantic: false,
 			gfm: true,
 			breaks: false,
-			silent: true,
+			silent: false,
 			smartLists: true,
 			smartypants: false,
 			xhtml: false
