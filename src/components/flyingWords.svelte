@@ -2,15 +2,15 @@
     import { fly } from 'svelte/transition';
     import { onMount, onDestroy } from 'svelte';
 
-    export let option;
+    export let text = "Flying Words";
+    export let large = false;
 
     let enable = false;
     const delay = 0;
     const duration = 2000;
     const range = 300;
 
-    const words = option.text.split(' ');
-    const large = option.large === true;
+    const words = text.split(' ');
 
     const size = "1.4em";
     const mobileLarge = "1.4em";

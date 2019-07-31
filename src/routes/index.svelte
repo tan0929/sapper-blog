@@ -1,5 +1,5 @@
 <script>
-	import FlyWords from '../components/flyWords.svelte';
+	import FlyingWords from '../components/flyingWords.svelte';
 	import SEO from '../components/seo.svelte';
 
 	let text = `let me = works.map(({fun})=>fun)`;
@@ -24,10 +24,10 @@
 <SEO data={{}}/>
 
 <div class="wrapper">
-	<FlyWords option={{text, large: true}}/>
-	<FlyWords option={{text: name, large: true}}/>
+	<FlyingWords {text} large />
+	<FlyingWords text={name} large/>
 	<a href={`mailto: ${email}`}>
-		<FlyWords option={{text: email}}/>
+		<FlyingWords text={email}/>
 	</a>
 </div>
 
