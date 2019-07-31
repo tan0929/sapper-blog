@@ -110,10 +110,10 @@ export const number = writable(11)
 和前面一樣，試著封裝一個遞減的按鈕
 ```html
 <script>
-import { number } from './stores';
-function decrement() {
-    number.update(n => n - 1);
-}
+    import { number } from './stores';
+    function decrement() {
+        number.update(n => n - 1);
+    }
 </script>
 
 <button on:click={decrement}>
