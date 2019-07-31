@@ -4,11 +4,11 @@ import process_md from './_process-md.js';
 import marked from 'marked';
 import hljs from 'highlight.js';
 
-const posts = fs.readdirSync('src/routes/blog/md').map(file => {
+const posts = fs.readdirSync('src/md').map(file => {
 
 		if (path.extname(file) !== '.md') return;
 
-		const markdown = fs.readFileSync(`src/routes/blog/md/${file}`, 'utf-8');
+		const markdown = fs.readFileSync(`src/md/${file}`, 'utf-8');
 
 		const { content, frontmatter } = process_md(markdown);
 
@@ -22,7 +22,7 @@ const posts = fs.readdirSync('src/routes/blog/md').map(file => {
 			pedantic: false,
 			gfm: true,
 			breaks: false,
-			sanitize: false,
+			silent: true,
 			smartLists: true,
 			smartypants: false,
 			xhtml: false

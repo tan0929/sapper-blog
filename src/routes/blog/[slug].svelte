@@ -74,6 +74,7 @@
 <SEO data={{
 		title: post.frontmatter.title,
 		description: post.frontmatter.description,
+		keywords: post.frontmatter.keywords,
 	}} 
 />
 
