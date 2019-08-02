@@ -18,7 +18,7 @@ test text
 
 <p align="center">
     test image
-    <img alt="good dog" src="md-img/first-time.gif" width="300">
+    <img alt="a man showing magic" src="md-img/magic.gif" width="300">
 </p>
 
 # Everything works fine! Congratulations!!
