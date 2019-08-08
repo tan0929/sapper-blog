@@ -4,6 +4,11 @@
 
     const works = [
         {
+            name: "Globe Spinner",
+            url: "https://globe-spinner.netlify.com",
+            src: "works/screenshot-globe-spinner.jpg",
+        },
+        {
             name: "Petalimn",
             url: "https://petalimn.com",
             src: "works/screenshot-petalimn.jpg",

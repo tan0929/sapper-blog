@@ -66,7 +66,7 @@
         background-position: center;
         background-clip: text;
         -webkit-background-clip: text;
-        white-space: nowrap;
+        white-space: wrap;
     }
 
     a {

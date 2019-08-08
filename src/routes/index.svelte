@@ -21,7 +21,7 @@
 	}
 </style>
 
-<SEO data={{}}/>
+<SEO />
 
 <div class="wrapper">
 	<FlyingWords {text} large />

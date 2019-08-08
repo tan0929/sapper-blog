@@ -12,7 +12,7 @@
 </script>
 
 <script>
-    export let data;
+    export let data = {};
     
     const metaTitle = data.title || def.title;
     const metaDescription = data.description || def.description;
